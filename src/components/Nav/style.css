@@ -43,10 +43,11 @@
 .field {
   margin: 0 10px 0 0;
   justify-content: center;
-  &_asc {
-    background: #6f6;
-  }
-  &_desc {
-    background: #66f;
+  &_active {
+    background: #4c9;
+    color: #fff;
+    &:hover {
+      background: #4b8;
+    }
   }
 }

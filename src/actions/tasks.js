@@ -7,7 +7,7 @@ import {
   POST_TASK_REQUEST,
 } from '../constants/tasks';
 import { baseURL } from '../constants/urlParts';
-import enhancedFetch from '../helpers/enhancedFetch';
+import enhancedFetch from '../utils/enhancedFetch';
 
 
 export const getTasks = (

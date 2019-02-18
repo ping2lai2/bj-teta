@@ -47,7 +47,7 @@ class Main extends React.Component {
   render() {
     return (
       <Layout>
-        <Nav />
+        <Nav isAdmin={true} {...this.props} />
         {this.renderTemplate()}
       </Layout>
     );

@@ -1,0 +1,9 @@
+.smart > button {
+  width: 200px;
+  height: 40px;
+  cursor: pointer;
+  &:hover {
+      background: #999;
+      color: #fff;
+  }
+}

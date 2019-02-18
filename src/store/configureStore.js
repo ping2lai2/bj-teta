@@ -14,7 +14,7 @@ const enhancers = [];
 
 const persistConfig = {
   key: 'root',
-  whitelist: ['tasks'], //TODO: check it.
+  whitelist: ['t'], //TODO: check it.
   storage,
 };
 

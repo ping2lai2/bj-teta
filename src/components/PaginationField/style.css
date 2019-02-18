@@ -1,0 +1,36 @@
+.pagination {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  &__button {
+    user-select: none;
+    border-radius: 2px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
+    display: flex;
+    padding: 0 10px;
+    margin: 0 4px;
+    height: 30px;
+    background: #fff;
+    align-items: center;
+    cursor: pointer;
+    text-align: center;
+    word-wrap: break-word;
+    justify-content: flex-end;
+    > a {
+      color: inherit;
+      text-decoration: inherit;
+    }
+    &:hover {
+      background: #eee;
+    }
+    &_active {
+      background: #4c9;
+      color: #fff;
+      &:hover {
+        background: #4b8;
+      }
+    }
+  }
+}

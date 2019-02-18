@@ -1,2 +1,2 @@
-export const GET_TASKS = 'GET_TASKS';
-export const CHANGE_TASK = 'CHANGE_TASK';
+export * from './tasks';
+export * from './user';

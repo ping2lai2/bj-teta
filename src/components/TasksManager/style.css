@@ -1,0 +1,57 @@
+.tasks-manager {
+  display: flex;
+  flex: 1 1 100%;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+}
+.task {
+  padding: 15px 0px;
+  margin: 0 10px;
+  flex: 1 1;
+  display: flex;
+  max-width: 360px;
+  &__inner {
+    background: #fff;
+    height: 420px;
+    width: 100%;
+    border-radius: 2px;
+    padding: 15px 10px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
+  }
+  &__item-header {
+    padding-right: 10px;
+    color: #28b;
+    font-weight: 500;
+  }
+  &__item {
+    border-bottom: 2px solid #4ea;
+    padding: 10px;
+  }
+  &__button {
+    user-select: none;
+    border-radius: 2px;
+    background: #eee;
+    display: flex;
+    width: 100%;
+    padding: 0 10px;
+    margin: 40px 0 0;
+    height: 30px;
+    align-items: center;
+    cursor: pointer;
+    text-align: center;
+    word-wrap: break-word;
+    justify-content: center;
+    &:hover {
+      background: #cfcfcf;
+    }
+  }
+}
+
+.layout {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}

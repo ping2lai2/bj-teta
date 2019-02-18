@@ -1,0 +1,52 @@
+.nav {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: 20px;
+  flex-direction: column;
+  &__inner {
+    margin-top: 10px;
+    display: flex;
+    width: 100%;
+  }
+}
+.admin {
+  display: flex;
+  align-self: flex-end;
+}
+.sort-fields {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 1 1;
+}
+.description {
+  margin: 0 10px 0 0;
+}
+.button {
+  user-select: none;
+  border-radius: 2px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
+  display: flex;
+  padding: 0 10px;
+  height: 30px;
+  background: #fff;
+  align-items: center;
+  cursor: pointer;
+  text-align: center;
+  word-wrap: break-word;
+  justify-content: flex-end;
+  &:hover {
+    background: #eee;
+  }
+}
+.field {
+  margin: 0 10px 0 0;
+  justify-content: center;
+  &_asc {
+    background: #6f6;
+  }
+  &_desc {
+    background: #66f;
+  }
+}

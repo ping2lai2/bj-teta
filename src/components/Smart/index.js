@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
-import { getTasks } from '../../actions/tasks';
+import { postTask } from '../../actions/tasks';
 
 
 import './style.css';
@@ -9,7 +9,7 @@ import './style.css';
 class Smart extends React.Component {
   state = { flag: false };
   clickFunc = () => {
-    this.props.getTasks();
+    this.props.postTask();
     this.setState({
       flag: !this.state.flag,
     });
@@ -28,7 +28,7 @@ const mapStateToProps = ({ tasks }) => ({
   tasks,
 });
 const mapDispatchToProps = dispatch => ({
-  getTasks: () => dispatch(getTasks()),
+  postTask: () => dispatch(postTask({})),
 });
 
 export default connect(

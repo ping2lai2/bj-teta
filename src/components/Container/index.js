@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 import './style.css';
 
-const Content = ({ children }) => <div className="content">{children}</div>;
+const Container = ({ children }) => <div className="container">{children}</div>;
 
-Content.propTypes = {
+Container.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
 };
 
-export default Content;
+export default Container;

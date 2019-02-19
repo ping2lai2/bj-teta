@@ -12,6 +12,7 @@ import {
 
 //TODO: EDIT === POST?
 const initialState = {
+  isFetching: false,
   page: 1,
   itemsList: [],
   sortField: 'username',
@@ -23,12 +24,14 @@ export const tasksReducer = (state = initialState, action) => {
   case GET_TASKS_REQUEST: {
     return {
       ...state,
+      isFetching: true,
     };
   }
   case GET_TASKS_SUCCESS: {
     const { message, page, sortField, sortDirection } = action;
     return {
       ...state,
+      isFetching: false,
       itemsList: message.tasks,
       page,
       sortField,
@@ -39,6 +42,7 @@ export const tasksReducer = (state = initialState, action) => {
   case GET_TASKS_FAIL: {
     return {
       ...state,
+      isFetching: false,
     };
   }
   case POST_TASK_REQUEST: {

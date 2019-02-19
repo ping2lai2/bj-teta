@@ -3,7 +3,6 @@
   width: 100%;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
   &__button {
     user-select: none;
     border-radius: 2px;

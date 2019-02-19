@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './style.css';
 
-const TasksManager = ({ itemsList, isAdmin }) => (
+const TasksManager = ({ itemsList, isLoggedIn }) => (
   <div className="tasks-manager">
     {itemsList.map(task => (
       <div key={task.id} className="task">
@@ -28,7 +28,10 @@ const TasksManager = ({ itemsList, isAdmin }) => (
             <span className="task__item-header">status:</span>
             {task.status}
           </div>
-          {isAdmin && <div className="task__button">изменить</div>}
+          <div className="task__buttons-field">
+            <div className="task__button">посмотреть</div>
+            {isLoggedIn && <div className="task__button">изменить</div>}
+          </div>
         </div>
       </div>
     ))}
@@ -36,7 +39,7 @@ const TasksManager = ({ itemsList, isAdmin }) => (
 );
 TasksManager.propTypes = {
   itemsList: PropTypes.array.isRequired,
-  isAdmin: PropTypes.bool.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
 };
 
 export default TasksManager;

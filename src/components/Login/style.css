@@ -1,0 +1,40 @@
+.login-button {
+  align-self: flex-end;
+  padding: 0 15px;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  &__button-close {
+    box-shadow: none;
+    align-self: flex-end;
+  }
+  &__item {
+    display: flex;
+    margin-bottom: 15px;
+  }
+  &__input {
+    width: 100%;
+    box-shadow: 0 0 0.125rem rgba(0, 0, 0, 0.7);
+    padding: 5px 8px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    box-sizing: border-box;
+    border: 0;
+    background: #f9f9f9;
+  }
+  &__header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+  }
+  &__button-request {
+    align-self: center;
+    justify-content: center;
+  }
+}
+.popup {
+  border-radius: 2px;
+}

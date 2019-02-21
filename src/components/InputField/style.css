@@ -1,0 +1,19 @@
+.input-field {
+  display: flex;
+  margin-bottom: 15px;
+  &__name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 110px;
+  }
+  &__item {
+    width: 100%;
+    box-shadow: 0 0 0.125rem rgba(0, 0, 0, 0.7);
+    padding: 5px 8px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    box-sizing: border-box;
+    border: 0;
+    background: #f9f9f9;
+  }
+}

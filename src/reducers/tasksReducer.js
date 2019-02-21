@@ -17,6 +17,8 @@ const initialState = {
   itemsList: [],
   sortField: 'username',
   sortDirection: 'asc',
+  errorMessage: '',
+  reportMessage: '',
 };
 
 export const tasksReducer = (state = initialState, action) => {
@@ -25,6 +27,7 @@ export const tasksReducer = (state = initialState, action) => {
     return {
       ...state,
       isFetching: true,
+      errorMessage: '',
     };
   }
   case GET_TASKS_SUCCESS: {
@@ -43,21 +46,28 @@ export const tasksReducer = (state = initialState, action) => {
     return {
       ...state,
       isFetching: false,
+      errorMessage: action.message,
     };
   }
   case POST_TASK_REQUEST: {
     return {
       ...state,
+      errorMessage: '',
+      reportMessage: '',
     };
   }
   case POST_TASK_SUCCESS: {
     return {
       ...state,
+      reportMessage: 'создана задача с id:' + action.message.id,
     };
   }
   case POST_TASK_FAIL: {
     return {
       ...state,
+      reportMessage: Object.values(action.error).reduce(
+        (accum, curVal) => accum + curVal
+      ),
     };
   }
   case EDIT_TASK_REQUEST: {

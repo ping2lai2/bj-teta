@@ -4,9 +4,13 @@ import PropTypes from 'prop-types';
 import Popup from 'reactjs-popup';
 
 import Button from '../../components/Button';
+import InputField from '../../components/InputField';
 import Container from '../../components/Container';
 
 import './style.css';
+
+const popupStyles = { maxWidth: 500, minWidth: 300, borderRadius: 2 };
+
 class Login extends React.Component {
   state = {
     name: 'admin',
@@ -14,59 +18,55 @@ class Login extends React.Component {
   };
   _onChange = event => {
     this.setState({
-      [event.currentTarget.dataset.name]: event.currentTarget.value,
+      [event.currentTarget.dataset.type]: event.currentTarget.value,
     });
   };
 
-  login = () => {
+  login = (event) => {
+    event.preventDefault();
     const { name, password } = this.state;
     this.props.login(name, password);
   };
+
   render() {
     const { name, password } = this.state;
     const { user } = this.props;
     return user.name ? (
-      <Button className="login-button" onClick={this.props.logout}>
+      <Button className="login__button" onClick={this.props.logout}>
         выход
       </Button>
     ) : (
       <Popup
-        className="popup"
-        trigger={<Button className="login-button">вход</Button>}
+        trigger={<Button className="login__button">вход</Button>}
         modal
         closeOnDocumentClick
+        contentStyle={popupStyles}
       >
         {close => (
-          <div className="login">
+          <form className="login" onSubmit={(event) => this.login(event)}>
             <Container>
-              <Button className="login__button-close" onClick={close}>
+              <Button className="login__close-button" onClick={close}>
                 ❌
               </Button>
             </Container>
-            <div className="login__item">
-              <span className="login__header">логин</span>
-              <input
-                className="login__input"
-                data-type="name"
-                required
-                value={name}
-                onChange={this._onChange}
-              />
-            </div>
-            <div className="login__item">
-              <span className="login__header">пароль</span>
-              <input
-                className="login__input"
-                data-type="password"
-                required
-                value={password}
-                onChange={this._onChange}
-              />
-            </div>
-            <Button className="login__button-request" onClick={this.login}>
+            <InputField
+              data-type="name"
+              fieldName={'имя'}
+              value={name}
+              required
+              onChange={this._onChange}
+            />
+            <InputField
+              data-type="password"
+              fieldName={'пароль'}
+              value={password}
+              required
+              onChange={this._onChange}
+            />
+            <Button className="login__request-button">
               вход
             </Button>
-          </div>
+          </form>
         )}
       </Popup>
     );

@@ -5,7 +5,7 @@ import Button from '../../components/Button';
 
 import './style.css';
 
-class Nav extends React.Component {
+class SortFields extends React.Component {
   _onClick = event => {
     const { tasks, getTasks } = this.props;
     const field = event.currentTarget.dataset.field;
@@ -27,7 +27,7 @@ class Nav extends React.Component {
         key={index}
         onClick={this._onClick}
         data-field={item}
-        className={`field${item === sortField ? ' field_active' : ''}`}
+        className={`sort-fields__item${item === sortField ? ' sort-fields__item_active' : ''}`}
       >
         {item === sortField
           ? sortDirection === 'asc'
@@ -39,20 +39,17 @@ class Nav extends React.Component {
   };
   render() {
     return (
-      <div className="nav">
-        <div className="sort-fields">
-          <span className="description">способы сортировки:</span>
-          {this.renderButtons()}
-        </div>
-        <div className="button">добавить новую карту</div>
+      <div className="sort-fields">
+        <span className="sort-fields__description">способы сортировки:</span>
+        {this.renderButtons()}
       </div>
     );
   }
 }
 
-Nav.propTypes = {
+SortFields.propTypes = {
   tasks: PropTypes.object.isRequired,
   getTasks: PropTypes.func.isRequired,
 };
 
-export default Nav;
+export default SortFields;

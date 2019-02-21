@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 
 import './style.css';
 
-const Button = ({ children, className, ...rest }) => <div className={`button ${className}`} {...rest}>{children}</div>;
+const Button = ({ children, className, ...rest }) => (
+  <button className={`button ${className ? className : ''}`} {...rest}>
+    {children}
+  </button>
+);
 
 Button.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object,
-    PropTypes.string,
-  ]),
+  className: PropTypes.string,
+  children: PropTypes.string.isRequired,
 };
 
 export default Button;

@@ -29,7 +29,6 @@ const TasksManager = ({ itemsList, isLoggedIn }) => (
             {task.status}
           </div>
           <div className="task__buttons-field">
-            <div className="task__button">посмотреть</div>
             {isLoggedIn && <div className="task__button">изменить</div>}
           </div>
         </div>

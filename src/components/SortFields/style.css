@@ -1,31 +1,24 @@
-.nav {
-  margin-top: 10px;
-  display: flex;
-  flex: 1 1 100%;
-}
-.admin {
-  display: flex;
-  align-self: flex-end;
-}
 .sort-fields {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  flex: 1 1;
-}
-.description {
+  margin-top: 10px;
+  &__description {
   margin: 0 10px 0 0;
 }
-
-.field {
+  &__item {
   margin: 0 10px 0 0;
   justify-content: center;
-  
   &_active {
-    background: #4c9!important;
+    background: #4c9;
     color: #fff;
     &:hover {
       background: #4b8;
     }
   }
 }
+}
+
+
+
+

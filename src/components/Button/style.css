@@ -2,15 +2,16 @@
   user-select: none;
   border-radius: 2px;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
-  display: flex;
   padding: 0 10px;
   height: 36px;
   background: #fff;
-  align-items: center;
   cursor: pointer;
-  text-align: center;
   word-wrap: break-word;
+  border: 0;
   &:hover {
     background: #eee;
+  }
+  &:focus {
+    outline: none;
   }
 }

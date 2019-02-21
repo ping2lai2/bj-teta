@@ -9,7 +9,6 @@ import {
 import { baseURL } from '../constants/urlParts';
 import enhancedFetch from '../utils/enhancedFetch';
 
-
 export const getTasks = (
   sortField = 'username',
   sortDirection = 'asc',
@@ -42,17 +41,13 @@ export const getTasks = (
   } catch (error) {
     dispatch({
       type: GET_TASKS_FAIL,
-      error,
+      message: error.message,
     });
   }
 };
 
-export const postTask = newCardData => async dispatch => {
-  const {
-    username = 'test',
-    email = 'test@gmail.com',
-    text = 'test',
-  } = newCardData;
+export const postTask = task => async dispatch => {
+  const { username, email, text } = task;
   let form = new FormData();
   form.append('username', username);
   form.append('email', email);
@@ -71,7 +66,6 @@ export const postTask = newCardData => async dispatch => {
       type: POST_TASK_SUCCESS,
       message,
     });
-    console.log(message);
   } catch (error) {
     console.log(error);
     dispatch({
@@ -80,4 +74,3 @@ export const postTask = newCardData => async dispatch => {
     });
   }
 };
-

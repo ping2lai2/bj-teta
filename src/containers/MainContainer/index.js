@@ -31,7 +31,6 @@ class MainContainer extends React.Component {
       getTasks();
     }
   }
-  //TODO: добавить обработку ERROR
   getNextPageTasks = page => {
     const {
       tasks: { sortField, sortDirection },

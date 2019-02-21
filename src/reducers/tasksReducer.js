@@ -11,7 +11,6 @@ import {
   CLEAR_MESSAGES,
 } from '../constants/tasks';
 
-//TODO: EDIT === POST?
 const initialState = {
   isFetching: false,
   page: 1,

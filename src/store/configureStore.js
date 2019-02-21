@@ -14,7 +14,6 @@ const enhancers = [];
 
 const persistConfig = {
   key: 'root',
-  whitelist: ['t'], //TODO: check it.
   storage,
 };
 

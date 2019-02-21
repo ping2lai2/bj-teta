@@ -7,7 +7,7 @@ import {
   POST_TASK_REQUEST,
 } from '../constants/tasks';
 import { baseURL } from '../constants/urlParts';
-import enhancedFetch from '../utils/enhancedFetch';
+import {enhancedFetch} from '../utils';
 
 export const getTasks = (
   sortField = 'username',
@@ -67,7 +67,6 @@ export const postTask = task => async dispatch => {
       message,
     });
   } catch (error) {
-    console.log(error);
     dispatch({
       type: POST_TASK_FAIL,
       error,

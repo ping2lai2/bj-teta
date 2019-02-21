@@ -3,10 +3,19 @@ import PropTypes from 'prop-types';
 
 import './style.css';
 
-const InputField = ({inputRef, className, fieldName, ...rest }) => (
+const InputField = ({
+  inputRef,
+  className,
+  fieldName,
+  ...rest
+}) => (
   <div className={`input-field ${className ? className : ''}`}>
     <span className="input-field__name">{fieldName}</span>
-    <input className="input-field__item" ref={inputRef} {...rest} />
+    <input
+      className="input-field__item"
+      ref={inputRef}
+      {...rest}
+    />
   </div>
 );
 

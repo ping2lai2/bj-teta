@@ -15,5 +15,14 @@
     box-sizing: border-box;
     border: 0;
     background: #f9f9f9;
+    &:disabled {
+      background: #f2f2f2;
+      box-shadow: none;
+    }
+    &[type='checkbox'] {
+      transform: scale(2);
+      box-shadow: none;
+      align-self: flex-start;
+    }
   }
 }

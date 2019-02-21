@@ -9,11 +9,15 @@ import Layout from '../../components/Layout';
 import Container from '../../components/Container';
 import TasksManager from '../../components/TasksManager';
 import TaskCreator from '../../components/TaskCreator';
+import TaskEditor from '../../components/TaskEditor';
 import PaginationField from '../../components/PaginationField';
 
 import { getTasks, postTask, login, logout } from '../../actions';
 
 class MainContainer extends React.Component {
+  state = {
+    openedTaskIndex: null,
+  };
   componentDidMount() {
     const { tasks, getTasks } = this.props;
     if (tasks.itemsList.length < 1) {
@@ -28,11 +32,29 @@ class MainContainer extends React.Component {
     } = this.props;
     getTasks(sortField, sortDirection, page);
   };
+  openTask = event =>
+    this.setState({
+      openedTaskIndex: event.currentTarget.dataset.index,
+    });
+
+  closeTask = () =>
+    this.setState({
+      openedTaskIndex: null,
+    });
+
   renderTemplate = () => {
     const {
-      tasks: { itemsList, totalItemsCount, page, isFetching, errorMessage },
+      tasks: {
+        itemsList,
+        totalItemsCount,
+        page,
+        isFetching,
+        errorMessage,
+        reportMessage,
+      },
       user: { name },
     } = this.props;
+    const { openedTaskIndex } = this.state;
     //TODO: need to create loading
     if (isFetching) {
       return <Container>{'Загрузка'}</Container>;
@@ -41,7 +63,11 @@ class MainContainer extends React.Component {
     } else {
       return (
         <Container>
-          <TasksManager itemsList={itemsList} isLoggedIn={!!name} />
+          <TasksManager
+            itemsList={itemsList}
+            isLoggedIn={!!name}
+            openTask={this.openTask}
+          />
           <PaginationField
             totalItemsCount={totalItemsCount}
             itemsCountPerPage={3}
@@ -49,6 +75,14 @@ class MainContainer extends React.Component {
             onChange={this.getNextPageTasks}
             activePage={page}
           />
+          {openedTaskIndex && (
+            <TaskEditor
+              openedTask={itemsList[openedTaskIndex]}
+              closeTask={this.closeTask}
+              errorMessage={errorMessage}
+              reportMessage={reportMessage}
+            />
+          )}
         </Container>
       );
     }

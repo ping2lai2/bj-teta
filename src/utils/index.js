@@ -1,4 +1,4 @@
-export default (URLpattern, fetchOptions) => {
+export const enhancedFetch = (URLpattern, fetchOptions) => {
   return fetch(URLpattern, fetchOptions).then(response =>
     response
       .json()
@@ -9,3 +9,7 @@ export default (URLpattern, fetchOptions) => {
       )
   );
 };
+
+export const statusToBool = status => (status === 10 ? true : false);
+
+export const boolToStatus = bool => (bool ? 10 : 0);

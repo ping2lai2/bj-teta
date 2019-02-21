@@ -26,9 +26,9 @@ class TaskCreator extends React.Component {
   }
   createTask = event => {
     event.preventDefault();
-    this.setState({
+    /*this.setState({
       message: '',
-    });
+    });*/
     const { username, email, text } = this;
     this.props.postTask({
       username: username.value,
@@ -40,6 +40,7 @@ class TaskCreator extends React.Component {
   render() {
     const {
       tasks: { errorMessage, reportMessage },
+      clearMessages,
     } = this.props;
 
     return (
@@ -58,7 +59,13 @@ class TaskCreator extends React.Component {
           >
             <div className="task-creator__header">
               <div className="task-creator__description">заполните поля</div>
-              <Button className="task-creator__button-close" onClick={close}>
+              <Button
+                className="task-creator__button-close"
+                onClick={() => {
+                  close();
+                  clearMessages();
+                }}
+              >
                 ❌
               </Button>
             </div>
@@ -97,6 +104,7 @@ class TaskCreator extends React.Component {
 TaskCreator.propTypes = {
   tasks: PropTypes.object.isRequired,
   postTask: PropTypes.func.isRequired,
+  clearMessages: PropTypes.func.isRequired,
 };
 
 export default TaskCreator;

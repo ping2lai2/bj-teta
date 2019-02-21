@@ -8,6 +8,7 @@ import {
   EDIT_TASK_REQUEST,
   EDIT_TASK_SUCCESS,
   EDIT_TASK_FAIL,
+  CLEAR_MESSAGES,
 } from '../constants/tasks';
 
 //TODO: EDIT === POST?
@@ -15,8 +16,8 @@ const initialState = {
   isFetching: false,
   page: 1,
   itemsList: [],
-  sortField: 'username',
-  sortDirection: 'asc',
+  sortField: '',
+  sortDirection: '',
   errorMessage: '',
   reportMessage: '',
 };
@@ -73,16 +74,41 @@ export const tasksReducer = (state = initialState, action) => {
   case EDIT_TASK_REQUEST: {
     return {
       ...state,
+      errorMessage: '',
+      reportMessage: '',
     };
   }
   case EDIT_TASK_SUCCESS: {
+    const { id, openedTaskIndex, text, status } = action;
+    const itemsList = [...state.itemsList];
     return {
       ...state,
+      itemsList: itemsList.map((item, index) => {
+        if (index !== parseInt(openedTaskIndex)) {
+          return item;
+        }
+        return {
+          ...item,
+          text,
+          status,
+        };
+      }),
+      reportMessage: 'задача с id:' + id + 'изменена',
     };
   }
   case EDIT_TASK_FAIL: {
     return {
       ...state,
+      reportMessage: Object.values(action.error).reduce(
+        (accum, curVal) => accum + curVal
+      ),
+    };
+  }
+  case CLEAR_MESSAGES: {
+    return {
+      ...state,
+      errorMessage: '',
+      reportMessage: '',
     };
   }
 

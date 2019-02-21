@@ -12,7 +12,14 @@ import TaskCreator from '../../components/TaskCreator';
 import TaskEditor from '../../components/TaskEditor';
 import PaginationField from '../../components/PaginationField';
 
-import { getTasks, postTask, login, logout } from '../../actions';
+import {
+  getTasks,
+  postTask,
+  editTask,
+  clearMessages,
+  login,
+  logout,
+} from '../../actions';
 
 class MainContainer extends React.Component {
   state = {
@@ -53,9 +60,10 @@ class MainContainer extends React.Component {
         reportMessage,
       },
       user: { name },
+      editTask,
+      clearMessages,
     } = this.props;
     const { openedTaskIndex } = this.state;
-    //TODO: need to create loading
     if (isFetching) {
       return <Container>{'Загрузка'}</Container>;
     } else if (errorMessage) {
@@ -78,9 +86,12 @@ class MainContainer extends React.Component {
           {openedTaskIndex && (
             <TaskEditor
               openedTask={itemsList[openedTaskIndex]}
+              openedTaskIndex={openedTaskIndex}
               closeTask={this.closeTask}
               errorMessage={errorMessage}
               reportMessage={reportMessage}
+              editTask={editTask}
+              clearMessages={clearMessages}
             />
           )}
         </Container>
@@ -89,12 +100,24 @@ class MainContainer extends React.Component {
   };
 
   render() {
-    const { user, tasks, login, logout, getTasks, postTask } = this.props;
+    const {
+      user,
+      tasks,
+      login,
+      logout,
+      getTasks,
+      postTask,
+      clearMessages,
+    } = this.props;
     return (
       <Layout>
         <Container>
           <Login user={user} login={login} logout={logout} />
-          <TaskCreator postTask={postTask} tasks={tasks} />
+          <TaskCreator
+            postTask={postTask}
+            tasks={tasks}
+            clearMessages={clearMessages}
+          />
           <SortFields tasks={tasks} getTasks={getTasks} />
         </Container>
         {this.renderTemplate()}
@@ -111,7 +134,9 @@ const mapDispatchToProps = dispatch => ({
   getTasks: (sortField, sortDirection, page) =>
     dispatch(getTasks(sortField, sortDirection, page)),
   postTask: task => dispatch(postTask(task)),
+  editTask: task => dispatch(editTask(task)),
   logout: () => dispatch(logout()),
+  clearMessages: () => dispatch(clearMessages()),
   login: (name, password) => dispatch(login(name, password)),
 });
 
@@ -119,10 +144,11 @@ MainContainer.propTypes = {
   tasks: PropTypes.object.isRequired,
   getTasks: PropTypes.func.isRequired,
   postTask: PropTypes.func.isRequired,
+  editTask: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   login: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired,
+  clearMessages: PropTypes.func.isRequired,
 };
 
 export default connect(

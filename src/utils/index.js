@@ -5,11 +5,9 @@ export const enhancedFetch = (URLpattern, fetchOptions) => {
       .then(data =>
         data.status !== 'ok'
           ? Promise.reject((data && data.message) || response.status)
-          : data.message
+          : data
       )
   );
 };
 
 export const statusToBool = status => (status === 10 ? true : false);
-
-export const boolToStatus = bool => (bool ? 10 : 0);

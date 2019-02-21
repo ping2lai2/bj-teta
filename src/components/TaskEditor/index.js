@@ -24,17 +24,11 @@ class TaskEditor extends React.Component {
     this.text = React.createRef();
     this.status = React.createRef();
   }
-  changeTask = event => {
+  editTask = event => {
     event.preventDefault();
-    this.setState({
-      message: '',
-    });
-    const { username, email, text } = this;
-    this.props.postTask({
-      username: username.value,
-      email: email.value,
-      text: text.value,
-    });
+    const { text, status } = this;
+    const { editTask, openedTask, openedTaskIndex } = this.props;
+    editTask({ text: text.value, status: status.checked, id: openedTask.id, openedTaskIndex });
   };
 
   render() {
@@ -43,13 +37,14 @@ class TaskEditor extends React.Component {
       errorMessage,
       reportMessage,
       closeTask,
+      clearMessages,
     } = this.props;
 
     return (
       <Popup open={true} modal closeOnDocumentClick contentStyle={popupStyles}>
         {close => (
           <form
-            onSubmit={event => this.changeTask(event)}
+            onSubmit={event => this.editTask(event)}
             className="task-editor"
           >
             <div className="task-editor__header">
@@ -59,6 +54,7 @@ class TaskEditor extends React.Component {
                 onClick={() => {
                   close();
                   closeTask();
+                  clearMessages();
                 }}
               >
                 ❌
@@ -86,7 +82,9 @@ class TaskEditor extends React.Component {
             {errorMessage}
             {reportMessage}
             <div className="task-editor__buttons-field">
-              <Button className="task-editor__button-request">редактировать</Button>
+              <Button className="task-editor__button-request">
+                редактировать
+              </Button>
             </div>
           </form>
         )}
@@ -100,6 +98,9 @@ TaskEditor.propTypes = {
   errorMessage: PropTypes.string,
   reportMessage: PropTypes.string,
   closeTask: PropTypes.func.isRequired,
+  editTask: PropTypes.func.isRequired,
+  clearMessages: PropTypes.func.isRequired,
+  openedTaskIndex: PropTypes.string.isRequired,
 };
 
 export default TaskEditor;

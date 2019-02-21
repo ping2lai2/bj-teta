@@ -1,11 +1,10 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'connected-react-router';
-import { history, store, persistor } from './store/configureStore';
+import { store, persistor } from './store/configureStore';
 import { PersistGate } from 'redux-persist/integration/react';
 
-import Routes from './routes';
+import MainContainer from './containers/MainContainer';
 
 import './index.css';
 
@@ -17,9 +16,7 @@ document.body.appendChild(root);
 render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <ConnectedRouter history={history}>
-        <Routes history={history} />
-      </ConnectedRouter>
+      <MainContainer />
     </PersistGate>
   </Provider>,
   root

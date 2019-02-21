@@ -1,15 +1,14 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import { routerMiddleware } from 'connected-react-router';
 import { persistStore, persistReducer } from 'redux-persist';
 import { rootReducer } from '../reducers';
 import storage from 'redux-persist/lib/storage';
-import { createBrowserHistory } from 'history';
+
 import thunk from 'redux-thunk';
 
-export const history = createBrowserHistory();
+
 
 const initialState = {};
-const middleware = [thunk, routerMiddleware(history)];
+const middleware = [thunk ];
 const enhancers = [];
 
 const persistConfig = {
@@ -17,7 +16,7 @@ const persistConfig = {
   storage,
 };
 
-const persistedReducer = persistReducer(persistConfig, rootReducer(history));
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 if (process.env.NODE_ENV === 'development') {
   const devToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION__;
